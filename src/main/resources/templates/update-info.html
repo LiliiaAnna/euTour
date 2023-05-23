@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/style/style.css}"/>
+    <title>Update Info</title>
+</head>
+<title>Tickets</title>
+<link rel="stylesheet" type="text/css" th:href="@{/style/style.css}"/>
+<div th:fragment="header">
+    <img id="sys-logo" height="80px" size="60px" text-align="left" url="https://www.europetours-travel.com/wp-content/uploads/2017/12/Logo-Europtours-travel.png" th:src="@{https://www.europetours-travel.com/wp-content/uploads/2017/12/Logo-Europtours-travel.png}"/>
+</div>
+<body>
+<form class ="card-form" action="#"
+      th:action="@{/update/{id}(id=${ticket.id})}"
+      th:object="${ticket}"
+
+      method="post">
+    <div class="info-box">
+        <input class="input-details" type="text" th:field="*{name}" id="name">
+        <label class="-dueDate" for="name">Name</label>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span><br>
+    </div>
+    <br>
+    <div class="info-box">
+        <input class="input-details" type="date" th:field="*{dueDate}" id="dueDate" required="required">
+        <label class="-dueDate" for="dueDate">Date</label>
+        <span th:if="${#fields.hasErrors('dueDate')}" th:errors="*{dueDate}"></span><br>
+    </div>
+    <br>
+    <div class="info-box">
+        <input class="input-details" type="email" th:field="*{email}" id="email" required="required">
+        <label class="-email" for="dueDate">Email</label>
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span><br>
+    </div>
+    <br>
+    <div class="info-box">
+        <input class="input-details" type="tel" th:field="*{phoneNumber}" id="number" required="required">
+        <label class="-dueDate" for="number">Number</label>
+        <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span><br>
+    </div>
+    <br>
+    <div class="info-box">
+        <input class="input-details" type="text" th:field="*{address}" id="address" required="required">
+        <label class="-address" for="address">address</label>
+        <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span><br>
+    </div>
+    <br>
+  <input type="submit" value="Update Information">
+    <br>
+</span>
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/style/style.css}"/>
+    <div th:fragment="header">
+        <img id="sys-logo" height="80px" size="60px" text-align="left" url="https://www.europetours-travel.com/wp-content/uploads/2017/12/Logo-Europtours-travel.png" th:src="@{https://www.europetours-travel.com/wp-content/uploads/2017/12/Logo-Europtours-travel.png}"/>
+    </div>
+    <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " active";
+            setTimeout(showSlides, 2000);
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+        }
+
+        /* Header/Logo Title */
+        .header {
+            padding: 30px;
+            text-align: center;
+            background: transparent;
+            color: red;
+            font-size: 15px;
+        }
+
+        label{
+            color: black;
+        }
+        .content {padding:20px;}
+
+
+        .header {
+            padding: 30px;
+            text-align: center;
+            background: white;
+            color: #d7b686;
+            font-size: 15px;
+        }
+    </style>
+    <div class="header">
+        <h1>Complete your reservation</h1><br>
+    </div>
+    <br>
+    <form method="get" action="#" th:action="@{/logout}">
+        <input type="submit" value="Logout" /> <br>
+    </form>
+</head>
+<body>
+<br>
+
+<form  action="#" th:action="@{/addticket}" th:object="${ticket}" method="post">
+
+    <div>
+        <div class="info-box">
+            <input class="input-details" type="text" th:field="*{name}" id="name">
+            <label class="-dueDate" for="name">Name</label>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span><br>
+        </div>
+        <br>
+        <div class="info-box">
+            <input class="input-details" type="date" th:field="*{dueDate}" id="dueDate" required="required">
+            <label class="-dueDate" for="dueDate">Date</label>
+            <span th:if="${#fields.hasErrors('dueDate')}" th:errors="*{dueDate}"></span><br>
+        </div>
+        <br>
+        <div class="info-box">
+            <input class="input-details" type="email" th:field="*{email}" id="email" required="required">
+            <label class="-email" for="dueDate">Email</label>
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span><br>
+        </div>
+        <br>
+        <div class="info-box">
+            <input class="input-details" type="tel" th:field="*{phoneNumber}" id="number" required="required">
+            <label class="-dueDate" for="number">Number</label>
+            <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span><br>
+        </div>
+        <br>
+        <div class="info-box">
+            <input class="input-details" type="text" th:field="*{address}" id="address" required="required">
+            <label class="-address" for="address">address</label>
+            <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span><br>
+        </div>
+        <br>
+        <br>
+        <input class="btn-grad" type="submit" value="Add Info">
+    </div>
+</form>
+
+</body>
+</html>

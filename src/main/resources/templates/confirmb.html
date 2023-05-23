@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/style/style.css}"/>
+    <meta charset="UTF-8">
+    <title>Confirm</title>
+</head>
+<body>
+<div th:switch="${tickets}">
+<div th:case="*">
+    <h1>Confirm Details</h1><br>
+    <br>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Email</th>
+            <th>Number</th>
+            <th>address</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <br>
+        <tr th:each="ticket : ${tickets}">
+            <td th:text="${ticket.name}"></td>
+            <td th:text="${ticket.dueDate}"></td>
+            <td th:text="${ticket.email}"></td>
+            <td th:text="${ticket.phoneNumber}"></td>
+            <td th:text="${ticket.address}"></td>
+
+
+            <td><a class="edit" th:href="@{/edit/{id}(id=${ticket.id})}">Edit</a></td>
+            <td><a class="dele" th:href="@{/delete/{id}(id=${ticket.id})}">Delete</a></td>
+
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<p><a class="btn" th:action="@{/thankss}" href="/thankss">Confrim</a></p>
+
+
+<form class="btn" method="get" action="#" th:action="@{/logout}">
+    <input type="submit" value="Logout" />
+</form>
+</div>
+</body>
+</html>

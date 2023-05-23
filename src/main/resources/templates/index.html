@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tickets</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/style/style.css}"/>
+  <div th:fragment="header">
+    <img id="sys-logo" height="80px" size="60px" text-align="left" url="https://www.europetours-travel.com/wp-content/uploads/2017/12/Logo-Europtours-travel.png" th:src="@{https://www.europetours-travel.com/wp-content/uploads/2017/12/Logo-Europtours-travel.png}"/>
+  </div>
+</head>
+<body>
+
+
+
+<div class="box">
+
+<div th:switch="${tickets}">
+
+  <div th:case="null">
+
+    <nav class="navMenu" style="width: 70%; right: 25%; display: flex; flex-direction: row" >
+
+
+    <form method="get" action="#" th:action="@{/logout}">
+      <input class="input" type="submit" value="Logout" />
+      <a method="get" action="/registration">Home</a>
+      <a method="get" action="#" >Cars</a>
+      <a method="get" action="#" >Hotels</a>
+      <a method="get" action="#">Contact</a>
+    </form>
+
+
+  </nav>
+
+
+    <section class="hero-section">
+      <div class="card-grid">
+        <a class="card" href="/gotoinfo">
+          <input type="submit">
+          <div class="card__background" style="background-image: url(https://static.euronews.com/articles/stories/06/28/82/20/1440x810_cmsv2_ba880cd0-93ce-5e33-8e1e-f64dff1d92c2-6288220.jpg)"></div>
+          <div class="card__content">
+            <p class="card__category">3,569$</p>
+            <p class="card__category2">7 nights | July 1 - July 7 </p>
+            <h3 class="card__heading"><br>
+              Ukraine</h3>
+          </div>
+        </a>
+        <a class="card" href="/gotoinfo">
+          <div class="card__background" style="background-image: url(https://d3dqioy2sca31t.cloudfront.net/Projects/cms/production/000/003/498/slideshow/4533c73ed3cb0e942caea654971cbee4/portugal-tour-boat-porto-2014.jpg)"></div>
+          <div class="card__content">
+            <p class="card__category">$2,345</p>
+            <p class="card__category2">8 nights | March 7 - March 15</p>
+            <h3 class="card__heading"><br>
+              Italy</h3>
+          </div>
+        </a>
+
+        <a class="card" href="/gotoinfo">
+          <div class="card__background" style="background-image: url(https://d3dqioy2sca31t.cloudfront.net/Projects/cms/production/000/004/813/medium/e63d8f083f9168489cd76f1d7618e03a/tile-tours-spain-sagrada-familia.jpg)"></div>
+          <div class="card__content">
+            <p class="card__category">3,421$</p>
+            <p class="card__category2">14 nights | January 8 - January 19</p>
+            <h3 class="card__heading"><br>
+              Spain</h3>
+          </div>
+        </a>
+        <a class="card" href="/gotoinfo">
+          <div class="card__background" style="background-image: url(https://www.planetware.com/photos-large/H/hungary-the-danube.jpg)"></div>
+          <div class="card__content">
+            <p class="card__category">2,389$</p>
+            <p class="card__category2">11 days |  December 3 - December 8</p>
+            <h3 class="card__heading"><br>
+              Hungary</h3>
+          </div>
+        </a>
+      </div>
+
+    </section>
+
+  </div>
+    <div th:case="*">
+      <h1>Confrim Details</h1>
+      <table>
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Date</th>
+          <th>Email</th>
+          <th>Number</th>
+          <th>address</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ticket : ${tickets}">
+          <td th:text="${ticket.name}"></td>
+          <td th:text="${ticket.dueDate}"></td>
+          <td th:text="${ticket.email}"></td>
+          <td th:text="${ticket.phoneNumber}"></td>
+          <td th:text="${ticket.address}"></td>
+
+
+          <td><a class="edit" th:href="@{/edit/{id}(id=${ticket.id})}">Edit</a></td>
+          <td><a class="dele" th:href="@{/delete/{id}(id=${ticket.id})}">Delete</a></td>
+
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <p><a class="btn" href="/thankss">Confrim</a></p>
+
+
+    <form class="btn" method="get" action="#" th:action="@{/logout}">
+      <input type="submit" value="Logout" />
+    </form>
+
+
+</div>
+</div>
+
+
+</div>
+
+
+</body>
+</html>
